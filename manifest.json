@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Viator Extract/Export Panel",
+  "version": "1.0.1",
+  "description": "Injects a small panel with extract and export buttons on viator.com.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.viator.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Viator Extract/Export Panel"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.viator.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
