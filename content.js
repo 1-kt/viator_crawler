@@ -11,11 +11,13 @@
 
   const extractBtn = document.createElement('button');
   extractBtn.type = 'button';
+  extractBtn.id = 'vtp-extract-btn';
   extractBtn.className = 'vtp-btn';
   extractBtn.textContent = '提取';
 
   const exportBtn = document.createElement('button');
   exportBtn.type = 'button';
+  exportBtn.id = 'vtp-export-btn';
   exportBtn.className = 'vtp-btn vtp-btn-secondary';
   exportBtn.textContent = '导出';
 

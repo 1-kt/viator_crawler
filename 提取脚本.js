@@ -3,11 +3,25 @@
 window.products = Array.isArray(window.products) ? window.products : [];
 
 // 注意：避免用单独的 links 列表按索引对应，直接在每个卡片内找链接更稳
-const elements = document.getElementsByClassName('contentContainer__uVXF');
+let elements = document.getElementsByClassName('imageHighlight__GwVM highlightImage__n6NH');
+let links = document.querySelectorAll('a.productListCardWrapper___oy3');
+
+if (links.length === 0) {
+    links = document.getElementsByClassName('productCard__A2Ct clickable__DG3l inspiration__n1kn productCardWithImageAnimation__UvbZ productCardWithExpandAnimation__k5jQ');
+}
+
+
+// if (elements.length === 0) {
+//     elements = document.getElementsByClassName('textContainer__CKz3');
+//     links = document.getElementsByClassName('productCard__A2Ct clickable__DG3l inspiration__n1kn productCardWithImageAnimation__UvbZ productCardWithExpandAnimation__k5jQ');
+//     if (elements.length === 0) {
+//         console.log('未找到产品列表元素，请检查类名是否正确');
+//         return;
+//     }
+// }
 
 for (let i = 0; i < elements.length; i++) {
 const element = elements[i];
-const link = element.querySelector('a.productListCardWrapper___oy3')?.href || '';
 
 const product = {
 status: element.querySelector('[data-automation="srp-product-list-card-badge"] strong')?.textContent.trim() || '',
@@ -21,7 +35,7 @@ element.querySelectorAll('[data-automation="srp-product-list-card-duration"], [d
 .join('; '),
 price: (element.querySelector('[data-automation="srp-product-list-card-price"] [data-automation="current-price"]')?.textContent.trim().replace(/\D+/g, '') || ''),
 priceDescription: element.querySelector('[data-automation="srp-product-list-card-price"] [class*="tieredPricingLabel"]')?.textContent.trim() || '',
-link
+link: links[i]?.href || ''
 };
 
 // 可选：按链接去重，避免多次点击累积重复数据
